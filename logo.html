@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="2.png">
+    <title>Logo Portfolio | ABChugtai Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === LOGO PAGE SPECIFIC STYLES === */
+        
+        .logo-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 5% 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.03) 0%, transparent 70%);
+            animation: rotateBg 20s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .logo-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--cyan-glow), #ff00ff, var(--neon-blue));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: gradientFlow 4s ease infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .logo-hero .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* === FILTER BUTTONS === */
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 2rem 5%;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--cyan-glow);
+            color: var(--bg-primary);
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+        
+        /* === LOGO GRID === */
+        .logo-grid-container {
+            padding: 2rem 5% 5rem;
+        }
+        
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            perspective: 1000px;
+        }
+        
+        .logo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .logo-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-15px) scale(1.05);
+            border-color: var(--cyan-glow);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(0, 255, 255, 0.3),
+                0 0 60px rgba(0, 255, 255, 0.1);
+            z-index: 10;
+        }
+        
+        .logo-card-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(0, 102, 255, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-card-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .logo-card:hover .logo-card-image::before {
+            opacity: 1;
+        }
+        
+        .logo-card-image img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+            transition: all 0.5s;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+        }
+        
+        .logo-card:hover .logo-card-image img {
+            transform: scale(1.2) rotate(-5deg);
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
+        }
+        
+        .logo-card-info {
+            padding: 1.5rem;
+        }
+        
+        .logo-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .logo-brand {
+            color: var(--cyan-glow);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .logo-card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-download {
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--cyan-glow);
+            border: 1px solid var(--cyan-glow);
+        }
+        
+        .btn-download:hover {
+            background: var(--cyan-glow);
+            color: var(--bg-primary);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        .btn-order {
+            background: var(--neon-blue);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-order:hover {
+            background: #0055cc;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
+        }
+        
+        /* === LOGO CARD RIBBON === */
+        .logo-ribbon {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: var(--cyan-glow);
+            color: var(--bg-primary);
+            padding: 0.3rem 2rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            z-index: 5;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        /* === MODAL === */
+        .logo-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover {
+            color: var(--cyan-glow);
+            background: rgba(0, 255, 255, 0.1);
+        }
+        
+        .modal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* === PRICING SECTION === */
+        .pricing-section {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .pricing-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-section h2 span {
+            color: var(--cyan-glow);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+        
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Popular';
+            position: absolute;
+            top: 15px;
+            right: -25px;
+            background: var(--cyan-glow);
+            color: var(--bg-primary);
+            padding: 0.3rem 2.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .pricing-card:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+        
+        .pricing-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--cyan-glow);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--cyan-glow);
+            font-weight: 700;
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .logo-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .logo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+        }
+        
+        /* === PARTICLES FLOATING === */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--cyan-glow);
+            border-radius: 50%;
+            animation: floatUp 8s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Background -->
+    <div id="bg-canvas"></div>
+    
+    <!-- Floating Particles -->
+    <div class="floating-particles" id="particles"></div>
+    
+    <!-- Navigation -->
+<nav class="navbar">
+    <div class="logo">ABChugtai</div>
+    
+    <!-- Mobile Menu Button - YEH ADD KARO -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="logo.html">Logos</a></li>
+        <li><a href="website.html">Websites</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+    
+    <!-- Logo Hero -->
+    <section class="logo-hero">
+        <div>
+            <h1>Logo Portfolio</h1>
+            <p class="subtitle">
+                Premium logo designs crafted with creativity and precision. 
+                Each logo tells a unique brand story.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Filter Buttons -->
+    <div class="filter-section">
+        <button class="filter-btn active" data-filter="all">All Designs</button>
+        <button class="filter-btn" data-filter="modern">Modern</button>
+        <button class="filter-btn" data-filter="minimal">Minimal</button>
+        <button class="filter-btn" data-filter="3d">3D Logo</button>
+        <button class="filter-btn" data-filter="business">Business</button>
+        <button class="filter-btn" data-filter="tech">Tech</button>
+        <button class="filter-btn" data-filter="luxury">Luxury</button>
+    </div>
+    
+    <!-- Logo Grid -->
+    <div class="logo-grid-container">
+        <div class="logo-grid" id="logoGrid">
+            
+            <!-- Logo Card 1 -->
+            <div class="logo-card" data-category="modern tech">
+                <span class="logo-ribbon">NEW</span>
+                <div class="logo-card-image">
+                    <img src="1.1.jpg" alt="TechVibe Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'></div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">TechVibe</div>
+                    <div class="logo-brand">Technology Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo%20like%20TechVibe" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo Card 2 -->
+            <div class="logo-card" data-category="minimal business">
+                <div class="logo-card-image">
+                    <img src="1.2.jpg"MinimalPro Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💼</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">MinimalPro</div>
+                    <div class="logo-brand">Corporate Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo%20like%20MinimalPro" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo Card 3 -->
+            <div class="logo-card" data-category="3d luxury">
+                <span class="logo-ribbon">HOT</span>
+                <div class="logo-card-image">
+                    <img src="1.3.jpg" alt="GoldCraft Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>👑</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">GoldCraft</div>
+                    <div class="logo-brand">Luxury Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo%20like%20GoldCraft" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo Card 4 -->
+            <div class="logo-card" data-category="tech modern">
+                <div class="logo-card-image">
+                    <img src="1.4.jpg" alt="CyberNode Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>⚡</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">CyberNode</div>
+                    <div class="logo-brand">Tech Startup</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo%20like%20CyberNode" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo Card 5 -->
+            <div class="logo-card" data-category="business minimal">
+                <div class="logo-card-image">
+                    <img src="1.5.jpg" alt="BizMark Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>🏢</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">BizMark</div>
+                    <div class="logo-brand">Business Solutions</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo%20like%20BizMark" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo Card 6 -->
+            <div class="logo-card" data-category="3d luxury">
+                <div class="logo-card-image">
+                    <img src="1.6.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">DiamondPeak</div>
+                    <div class="logo-brand">Premium Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo%20like%20DiamondPeak" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logo Cards 7-12 (Placeholder style) -->
+            <div class="logo-card" data-category="modern">
+                                <div class="logo-card-image">
+                    <img src="1.7.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">RocketBrand</div>
+                    <div class="logo-brand">Startup</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="minimal">
+                                <div class="logo-card-image">
+                    <img src="1.8.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">PureLight</div>
+                    <div class="logo-brand">Beauty Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%20logo" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="3d">
+                <span class="logo-ribbon">3D</span>
+                <div class="logo-card-image">
+                    <img src="1.9.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">CrystalEdge</div>
+                    <div class="logo-brand">3D Branding</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20similar%203D%20logo" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="tech">
+                                <div class="logo-card-image">
+                    <img src="2.0.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">AIPulse</div>
+                    <div class="logo-brand">AI Company</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20AI%20company%20logo" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="business">
+                               <div class="logo-card-image">
+                    <img src="2.1.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">TrustMark</div>
+                    <div class="logo-brand">Finance Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20finance%20logo" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="luxury">
+                <div class="logo-card-image">
+                    <img src="2.2.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">RoyalCrest</div>
+                    <div class="logo-brand">Luxury Hotel</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20luxury%20logo" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Continue for 18 more cards... -->
+            <!-- Cards 13-30 with similar structure -->
+            <div class="logo-card" data-category="modern tech">
+                                <div class="logo-card-image">
+                    <img src="2.3.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">FlashTech</div>
+                    <div class="logo-brand">SaaS Platform</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="minimal">                                <div class="logo-card-image">
+                    <img src="2.4.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">EcoPure</div>
+                    <div class="logo-brand">Organic Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="3d luxury">                                <div class="logo-card-image">
+                    <img src="2.5.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">ChampionX</div>
+                    <div class="logo-brand">Sports Brand</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="logo-card" data-category="business">                                <div class="logo-card-image">
+                    <img src="2.6.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div>
+                <div class="logo-card-info">
+                    <div class="logo-name">DataFlow</div>
+                    <div class="logo-brand">Analytics Firm</div>
+                    <div class="logo-card-actions">
+                        <a href="#" class="btn-sm btn-download">📥 Preview</a>
+                        <a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cards 17-30 (condensed) -->
+            <div class="logo-card" data-category="tech">                                <div class="logo-card-image">
+                    <img src="2.7.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">SecureVault</div><div class="logo-brand">Cyber Security</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="modern">                                <div class="logo-card-image">
+                    <img src="2.8.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">SoundWave</div><div class="logo-brand">Music Platform</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="minimal">                                <div class="logo-card-image">
+                    <img src="2.9.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">HomeStyle</div><div class="logo-brand">Real Estate</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="luxury">                                <div class="logo-card-image">
+                    <img src="3.0.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">EternalGems</div><div class="logo-brand">Jewelry Brand</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="3d">                                <div class="logo-card-image">
+                    <img src="3.1.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">IceCube</div><div class="logo-brand">Beverage Brand</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="tech business">                                <div class="logo-card-image">
+                    <img src="3.2.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">CloudNest</div><div class="logo-brand">Cloud Services</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="modern">                                <div class="logo-card-image">
+                    <img src="3.3.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">GameForge</div><div class="logo-brand">Gaming Studio</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="minimal luxury">                                <div class="logo-card-image">
+                    <img src="3.4.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">Blossom</div><div class="logo-brand">Beauty Brand</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="business">                                <div class="logo-card-image">
+                    <img src="3.5.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">PartnerUp</div><div class="logo-brand">Consulting Firm</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="tech 3d">                                <div class="logo-card-image">
+                    <img src="3.6.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">BioSync</div><div class="logo-brand">Health Tech</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="modern">                                <div class="logo-card-image">
+                    <img src="3.7.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">FoodieHub</div><div class="logo-brand">Restaurant Chain</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="luxury">                                <div class="logo-card-image">
+                    <img src="3.8.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">SpeedElite</div><div class="logo-brand">Auto Brand</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+            <div class="logo-card" data-category="minimal">                                <div class="logo-card-image">
+                    <img src="3.9.jpg" alt="DiamondPeak Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:4rem;\'>💎</div>';">
+                </div><div class="logo-card-info"><div class="logo-name">EduSmart</div><div class="logo-brand">Education</div><div class="logo-card-actions"><a href="#" class="btn-sm btn-download">📥 Preview</a><a href="https://wa.me/923039322849" class="btn-sm btn-order" target="_blank">Order Similar</a></div></div></div>
+            
+        </div>
+    </div>
+    
+    <!-- Load More Button -->
+    <div style="text-align: center; padding-bottom: 3rem;">
+        <button class="btn-neon" id="loadMore">Load More Logos</button>
+    </div>
+    
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <h2>Logo <span>Pricing</span></h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Choose the perfect package for your brand</p>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-icon">🥉</div>
+                <h3>Basic</h3>
+                <div class="pricing-price">$20</div>
+                <ul class="pricing-features">
+                    <li>1 Unique Concept</li>
+                    <li>2 Revisions</li>
+                    <li>PNG Format</li>
+                    <li>3 Days Delivery</li>
+                    <li>Basic Support</li>
+                </ul>
+                <a href="https://wa.me/923039322849?text=I%20want%20Basic%20Logo%20Package%20for%20$20" class="btn-neon" target="_blank">Order Now</a>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="pricing-icon">🥈</div>
+                <h3>Professional</h3>
+                <div class="pricing-price">$50</div>
+                <ul class="pricing-features">
+                    <li>3 Unique Concepts</li>
+                    <li>Unlimited Revisions</li>
+                    <li>PNG, JPG, SVG, PDF</li>
+                    <li>2 Days Delivery</li>
+                    <li>Priority Support</li>
+                    <li>Source File Included</li>
+                    <li>Social Media Kit</li>
+                </ul>
+                <a href="https://wa.me/923039322849?text=I%20want%20Professional%20Logo%20Package%20for%20$50" class="btn-neon" target="_blank">Order Now</a>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-icon">🥇</div>
+                <h3>Premium</h3>
+                <div class="pricing-price">$100</div>
+                <ul class="pricing-features">
+                    <li>5 Unique Concepts</li>
+                    <li>Unlimited Revisions</li>
+                    <li>All Formats + AI File</li>
+                    <li>24 Hours Delivery</li>
+                    <li>VIP Support</li>
+                    <li>Brand Guidelines</li>
+                    <li>Business Card Design</li>
+                    <li>Letterhead Design</li>
+                    <li>Lifetime Support</li>
+                </ul>
+                <a href="https://wa.me/923039322849?text=I%20want%20Premium%20Logo%20Package%20for%20$100" class="btn-neon" target="_blank">Order Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Logo Modal -->
+    <div class="logo-modal" id="logoModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img src="" alt="Logo Preview" class="modal-image" id="modalImage">
+            <h2 id="modalTitle"></h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;" id="modalBrand"></p>
+            <a href="https://wa.me/923039322849" class="btn-neon" target="_blank">Order This Style</a>
+        </div>
+    </div>
+    
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923039322849" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="three-background.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // === FILTER FUNCTIONALITY ===
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const logoCards = document.querySelectorAll('.logo-card');
+        
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                // Filter cards with animation
+                logoCards.forEach((card, index) => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.transitionDelay = `${index * 0.05}s`;
+                    
+                    if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                        card.style.display = 'block';
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 500);
+                    }
+                });
+            });
+        });
+        
+        // === MODAL FUNCTIONALITY ===
+        const modal = document.getElementById('logoModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBrand = document.getElementById('modalBrand');
+        const modalClose = document.getElementById('modalClose');
+        
+        document.querySelectorAll('.btn-download').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = btn.closest('.logo-card');
+                const img = card.querySelector('.logo-card-image img');
+                const name = card.querySelector('.logo-name').textContent;
+                const brand = card.querySelector('.logo-brand').textContent;
+                
+                if (img && img.src) {
+                    modalImage.src = img.src;
+                } else {
+                    modalImage.src = '';
+                    modalImage.style.display = 'none';
+                }
+                modalTitle.textContent = name;
+                modalBrand.textContent = brand;
+                modal.classList.add('active');
+            });
+        });
+        
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+        
+        // === LOAD MORE FUNCTIONALITY ===
+        const loadMoreBtn = document.getElementById('loadMore');
+        let cardsShown = 12;
+        
+        // Initially hide cards beyond 12
+        logoCards.forEach((card, index) => {
+            if (index >= cardsShown) {
+                card.style.display = 'none';
+            }
+        });
+        
+        loadMoreBtn.addEventListener('click', () => {
+            const hiddenCards = document.querySelectorAll('.logo-card[style*="display: none"]');
+            const cardsToShow = Array.from(hiddenCards).slice(0, 6);
+            
+            cardsToShow.forEach((card, index) => {
+                card.style.display = 'block';
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // Hide button if no more cards
+            if (hiddenCards.length <= 6) {
+                loadMoreBtn.style.display = 'none';
+            }
+        });
+        
+        // === FLOATING PARTICLES ===
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 6 + 6) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+        
+        // === SCROLL ANIMATION FOR LOGO CARDS ===
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) rotateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        logoCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px) rotateY(5deg)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            cardObserver.observe(card);
+        });
+        
+        // === MOUSE TRACKING FOR 3D TILT ===
+        document.querySelectorAll('.logo-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateY(-15px) scale(1.05)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateY(0) rotateX(0) translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

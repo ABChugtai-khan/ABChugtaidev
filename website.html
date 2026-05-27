@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="2.png">
+    <title>Website Portfolio | ABChugtai Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === WEBSITE PAGE SPECIFIC STYLES === */
+        
+        .web-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 5% 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .web-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0, 102, 255, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .web-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #00ffff, #00ff88, #0066ff, #00ffff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            animation: webGradient 5s ease infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes webGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .web-hero .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* === STATS BAR === */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+        
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--cyan-glow);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        /* === CATEGORY TABS === */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 2rem 5%;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--cyan-glow);
+            color: var(--bg-primary);
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+        }
+        
+        /* === WEBSITE SHOWCASE GRID === */
+        .showcase-section {
+            padding: 2rem 5% 5rem;
+        }
+        
+        .website-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .website-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .website-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--cyan-glow);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(0, 255, 255, 0.2),
+                0 0 60px rgba(0, 255, 255, 0.1);
+        }
+        
+        /* === LAPTOP MOCKUP === */
+        .mockup-container {
+            position: relative;
+            padding: 2rem 2rem 0;
+            perspective: 1000px;
+        }
+        
+        .laptop-mockup {
+            position: relative;
+            width: 100%;
+            background: #1a1a2e;
+            border-radius: 15px 15px 0 0;
+            padding: 12px 12px 0;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.5s;
+        }
+        
+        .website-card:hover .laptop-mockup {
+            transform: rotateX(-5deg);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(0, 255, 255, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .laptop-screen {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a35 100%);
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #2a2a4a;
+        }
+        
+        .laptop-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 8s ease;
+        }
+        
+        .website-card:hover .laptop-screen img {
+            transform: translateY(-60%);
+        }
+        
+        /* Screen glare effect */
+        .screen-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            pointer-events: none;
+            transition: all 0.5s;
+        }
+        
+        .website-card:hover .screen-glare {
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.2) 0%,
+                transparent 60%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+        }
+        
+        .laptop-base {
+            width: 110%;
+            margin-left: -5%;
+            height: 15px;
+            background: linear-gradient(180deg, #2a2a4a 0%, #1a1a2e 100%);
+            border-radius: 0 0 5px 5px;
+            position: relative;
+        }
+        
+        .laptop-notch {
+            position: absolute;
+            bottom: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: #3a3a5a;
+            border-radius: 2px;
+        }
+        
+        /* === WEBSITE INFO === */
+        .website-info {
+            padding: 1.5rem;
+        }
+        
+        .website-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: var(--cyan-glow);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        
+        .website-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        
+        .website-type {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .website-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .website-features li {
+            padding: 0.3rem 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .website-features li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--cyan-glow);
+        }
+        
+        .website-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .btn-preview {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--cyan-glow);
+            color: var(--cyan-glow);
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .btn-preview:hover {
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .btn-order-web {
+            padding: 0.7rem 1.5rem;
+            background: var(--neon-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 0.9rem;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .btn-order-web:hover {
+            background: #0055cc;
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
+        }
+        
+        /* === FEATURED CARD === */
+        .website-card.featured {
+            border-color: var(--cyan-glow);
+            position: relative;
+        }
+        
+        .website-card.featured::before {
+            content: 'Featured';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: linear-gradient(45deg, var(--cyan-glow), #00ff88);
+            color: var(--bg-primary);
+            padding: 0.3rem 2.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            z-index: 5;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        /* === AUTO SCROLLING SHOWCASE === */
+        .auto-scroll-container {
+            overflow: hidden;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .auto-scroll-track {
+            display: flex;
+            gap: 2rem;
+            animation: autoScroll 30s linear infinite;
+            width: max-content;
+        }
+        
+        .auto-scroll-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes autoScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .mini-card {
+            min-width: 300px;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .mini-card:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        .mini-mockup {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #0f0f1a, #1a1a35);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        /* === PROCESS SECTION === */
+        .process-section {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        
+        .process-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .process-section h2 span {
+            color: var(--cyan-glow);
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+        
+        .process-step {
+            position: relative;
+            padding: 2rem;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--cyan-glow), var(--neon-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--bg-primary);
+            margin: 0 auto 1rem;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .process-step h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        
+        .process-arrow {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transform: translateY(-50%);
+            color: var(--cyan-glow);
+            font-size: 1.5rem;
+        }
+        
+        /* === PRICING TABLE === */
+        .web-pricing {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .web-pricing h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .web-pricing h2 span {
+            color: var(--cyan-glow);
+        }
+        
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 3rem auto 0;
+        }
+        
+        .pricing-plan {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .pricing-plan.popular {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+            transform: scale(1.05);
+            background: rgba(0, 255, 255, 0.03);
+        }
+        
+        .pricing-plan.popular::after {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--cyan-glow);
+            color: var(--bg-primary);
+            padding: 0.3rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .pricing-plan:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15);
+        }
+        
+        .plan-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .plan-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--cyan-glow);
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .plan-features li {
+            padding: 0.6rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+        
+        .plan-features li::before {
+            content: '✓ ';
+            color: var(--cyan-glow);
+            font-weight: 700;
+        }
+        
+        /* === TECHNOLOGY STACK === */
+        .tech-stack {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .tech-stack h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tech-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .tech-icon:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+            transform: translateY(-10px) rotate(5deg);
+        }
+        
+        /* === TESTIMONIALS === */
+        .testimonials {
+            padding: 4rem 5%;
+            text-align: center;
+        }
+        
+        .testimonials h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
+        }
+        
+        .testimonial-stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--cyan-glow);
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .web-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .website-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-plan.popular {
+                transform: scale(1);
+            }
+            
+            .process-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Background -->
+    <div id="bg-canvas"></div>
+    
+<nav class="navbar">
+    <div class="logo">ABChugtai</div>
+    
+    <!-- Mobile Menu Button - YEH ADD KARO -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="logo.html">Logos</a></li>
+        <li><a href="website.html">Websites</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+    
+    <!-- Website Hero -->
+    <section class="web-hero">
+        <div>
+            <h1>Web Development</h1>
+            <p class="subtitle">
+                Modern, fast, and stunning websites built with cutting-edge technology. 
+                From e-commerce to AI-powered platforms, I bring your vision to life.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-icon">🚀</div>
+            <div class="stat-value counter" data-target="200">0</div>
+            <div class="stat-label">Websites Built</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">😊</div>
+            <div class="stat-value counter" data-target="150">0</div>
+            <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value counter" data-target="99">0</div>
+            <div class="stat-label">Performance Score</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-value counter" data-target="50">0</div>
+            <div class="stat-label">Awards Won</div>
+        </div>
+    </div>
+    
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+        <button class="tab-btn active" data-filter="all">All Projects</button>
+        <button class="tab-btn" data-filter="ecommerce">E-Commerce</button>
+        <button class="tab-btn" data-filter="ai">AI Websites</button>
+        <button class="tab-btn" data-filter="portfolio">Portfolio</button>
+        <button class="tab-btn" data-filter="business">Business</button>
+        <button class="tab-btn" data-filter="restaurant">Restaurant</button>
+        <button class="tab-btn" data-filter="landing">Landing Page</button>
+    </div>
+    
+    <!-- Website Showcase Grid -->
+    <section class="showcase-section">
+        <div class="website-grid" id="websiteGrid">
+            
+            <!-- Website Card 1 - Featured -->
+            <div class="website-card featured" data-category="ecommerce ai">
+                <div class="mockup-container">
+                    <div class="laptop-mockup">
+                        <div class="laptop-screen">
+                            <div class="screen-glare"></div>
+                            <img src="4.1.jpg" alt="E-Commerce Website" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;\'>🛒</div>';">
+                        </div>
+                        <div class="laptop-base">
+                            <div class="laptop-notch"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <div class="website-tags">
+                        <span class="tag">E-Commerce</span>
+                        <span class="tag">AI Powered</span>
+                        <span class="tag">React</span>
+                    </div>
+                    <h3 class="website-name">ShopSmart Pro</h3>
+                    <p class="website-type">Full-Stack E-Commerce Platform</p>
+                    <ul class="website-features">
+                        <li>AI Product Recommendations</li>
+                        <li>Payment Gateway Integration</li>
+                        <li>Real-time Inventory Management</li>
+                        <li>Admin Dashboard</li>
+                    </ul>
+                    <div class="website-actions">
+                        <a href="#" class="btn-preview">🔍 Live Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20e-commerce%20website%20like%20ShopSmart%20Pro" class="btn-order-web" target="_blank">Order Similar →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Website Card 2 -->
+            <div class="website-card" data-category="ai portfolio">
+                <div class="mockup-container">
+                    <div class="laptop-mockup">
+                        <div class="laptop-screen">
+                            <div class="screen-glare"></div>
+                            <img src="4.2.jpg" alt="AI Portfolio" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;\'>🤖</div>';">
+                        </div>
+                        <div class="laptop-base">
+                            <div class="laptop-notch"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <div class="website-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Portfolio</span>
+                        <span class="tag">Next.js</span>
+                    </div>
+                    <h3 class="website-name">AIPortfolio X</h3>
+                    <p class="website-type">AI-Powered Portfolio Website</p>
+                    <ul class="website-features">
+                        <li>ChatGPT Integration</li>
+                        <li>Dynamic Content Generation</li>
+                        <li>3D Interactive Elements</li>
+                        <li>Smart Contact System</li>
+                    </ul>
+                    <div class="website-actions">
+                        <a href="#" class="btn-preview">🔍 Live Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20AI%20portfolio%20website" class="btn-order-web" target="_blank">Order Similar →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Website Card 3 -->
+            <div class="website-card" data-category="restaurant business">
+                <div class="mockup-container">
+                    <div class="laptop-mockup">
+                        <div class="laptop-screen">
+                            <div class="screen-glare"></div>
+                            <img src="4.3.jpg" alt="Restaurant Website" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;\'>🍽️</div>';">
+                        </div>
+                        <div class="laptop-base">
+                            <div class="laptop-notch"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <div class="website-tags">
+                        <span class="tag">Restaurant</span>
+                        <span class="tag">Online Order</span>
+                    </div>
+                    <h3 class="website-name">FoodieDelight</h3>
+                    <p class="website-type">Restaurant & Food Ordering System</p>
+                    <ul class="website-features">
+                        <li>Online Menu & Ordering</li>
+                        <li>Table Reservation</li>
+                        <li>Food Gallery</li>
+                        <li>Google Maps Integration</li>
+                    </ul>
+                    <div class="website-actions">
+                        <a href="#" class="btn-preview">🔍 Live Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20restaurant%20website" class="btn-order-web" target="_blank">Order Similar →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Website Card 4 -->
+            <div class="website-card" data-category="business landing">
+                <div class="mockup-container">
+                    <div class="laptop-mockup">
+                        <div class="laptop-screen">
+                            <div class="screen-glare"></div>
+                            <img src="4.4.jpg" alt="Corporate Website" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;\'>🏢</div>';">
+                        </div>
+                        <div class="laptop-base">
+                            <div class="laptop-notch"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <div class="website-tags">
+                        <span class="tag">Corporate</span>
+                        <span class="tag">Business</span>
+                    </div>
+                    <h3 class="website-name">CorpX Solutions</h3>
+                    <p class="website-type">Professional Business Website</p>
+                    <ul class="website-features">
+                        <li>Company Profile</li>
+                        <li>Service Showcase</li>
+                        <li>Team Section</li>
+                        <li>Contact & Quote Form</li>
+                    </ul>
+                    <div class="website-actions">
+                        <a href="#" class="btn-preview">🔍 Live Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20business%20website" class="btn-order-web" target="_blank">Order Similar →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Website Card 5 -->
+            <div class="website-card" data-category="ecommerce">
+                <div class="mockup-container">
+                    <div class="laptop-mockup">
+                        <div class="laptop-screen">
+                            <div class="screen-glare"></div>
+                            <img src="4.5.jpg" alt="Fashion Store" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;\'>👗</div>';">
+                        </div>
+                        <div class="laptop-base">
+                            <div class="laptop-notch"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <div class="website-tags">
+                        <span class="tag">Fashion</span>
+                        <span class="tag">E-Commerce</span>
+                    </div>
+                    <h3 class="website-name">StyleHub Store</h3>
+                    <p class="website-type">Fashion E-Commerce Website</p>
+                    <ul class="website-features">
+                        <li>Product Catalog</li>
+                        <li>Size Guide System</li>
+                        <li>Wishlist Feature</li>
+                        <li>Secure Checkout</li>
+                    </ul>
+                    <div class="website-actions">
+                        <a href="#" class="btn-preview">🔍 Live Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20fashion%20e-commerce%20website" class="btn-order-web" target="_blank">Order Similar →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Website Card 6 -->
+            <div class="website-card" data-category="portfolio ai">
+                <div class="mockup-container">
+                    <div class="laptop-mockup">
+                        <div class="laptop-screen">
+                            <div class="screen-glare"></div>
+                            <img src="4.6.jpg" alt="Photography Portfolio" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:4rem;\'>📸</div>';">
+                        </div>
+                        <div class="laptop-base">
+                            <div class="laptop-notch"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <div class="website-tags">
+                        <span class="tag">Portfolio</span>
+                        <span class="tag">Creative</span>
+                    </div>
+                    <h3 class="website-name">LensCraft Studio</h3>
+                    <p class="website-type">Photography Portfolio Website</p>
+                    <ul class="website-features">
+                        <li>Image Gallery</li>
+                        <li>Lightbox Preview</li>
+                        <li>Booking System</li>
+                        <li>Client Galleries</li>
+                    </ul>
+                    <div class="website-actions">
+                        <a href="#" class="btn-preview">🔍 Live Preview</a>
+                        <a href="https://wa.me/923039322849?text=I%20want%20photography%20portfolio%20website" class="btn-order-web" target="_blank">Order Similar →</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="process-section">
+        <h2>My <span>Process</span></h2>
+        <p style="color: var(--text-secondary);">How I bring your website from idea to reality</p>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h4>Discovery</h4>
+                <p>Understanding your business goals, target audience, and requirements</p>
+                <span class="process-arrow">→</span>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h4>Design</h4>
+                <p>Creating wireframes and stunning UI/UX designs for your approval</p>
+                <span class="process-arrow">→</span>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h4>Development</h4>
+                <p>Building with clean code using the latest technologies</p>
+                <span class="process-arrow">→</span>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h4>Launch</h4>
+                <p>Testing, deployment, and ongoing support for your website</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Technology Stack -->
+    <section class="tech-stack">
+        <h2>Tech <span style="color: var(--cyan-glow);">Stack</span></h2>
+        <div class="tech-icons">
+            <div class="tech-icon" title="HTML5">🌐</div>
+            <div class="tech-icon" title="CSS3">🎨</div>
+            <div class="tech-icon" title="JavaScript">💛</div>
+            <div class="tech-icon" title="React">⚛️</div>
+            <div class="tech-icon" title="Next.js">▲</div>
+            <div class="tech-icon" title="Node.js">💚</div>
+            <div class="tech-icon" title="PHP">🐘</div>
+            <div class="tech-icon" title="Python">🐍</div>
+            <div class="tech-icon" title="MongoDB">🍃</div>
+            <div class="tech-icon" title="MySQL">🐬</div>
+        </div>
+    </section>
+    
+    <!-- Pricing Table -->
+    <section class="web-pricing">
+        <h2>Website <span>Pricing</span></h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Flexible packages for every business need</p>
+        
+        <div class="pricing-table">
+            <!-- Basic Plan -->
+            <div class="pricing-plan">
+                <div class="plan-icon">🌱</div>
+                <div class="plan-name">Starter</div>
+                <div class="plan-price">$100<span>/project</span></div>
+                <ul class="plan-features">
+                    <li>1 Page Website</li>
+                    <li>Responsive Design</li>
+                    <li>Contact Form</li>
+                    <li>Basic SEO</li>
+                    <li>3 Days Delivery</li>
+                    <li>1 Revision</li>
+                </ul>
+                <a href="https://wa.me/923039322849?text=I%20want%20Starter%20Website%20for%20$100" class="btn-order-web" target="_blank" style="display: block;">Get Started</a>
+            </div>
+            
+            <!-- Popular Plan -->
+            <div class="pricing-plan popular">
+                <div class="plan-icon">🚀</div>
+                <div class="plan-name">Business</div>
+                <div class="plan-price">$300<span>/project</span></div>
+                <ul class="plan-features">
+                    <li>5 Pages Website</li>
+                    <li>Responsive Design</li>
+                    <li>Contact & Quote Forms</li>
+                    <li>Advanced SEO</li>
+                    <li>5 Days Delivery</li>
+                    <li>3 Revisions</li>
+                    <li>Admin Panel</li>
+                    <li>Speed Optimization</li>
+                </ul>
+                <a href="https://wa.me/923039322849?text=I%20want%20Business%20Website%20for%20$300" class="btn-order-web" target="_blank" style="display: block;">Get Started</a>
+            </div>
+            
+            <!-- Premium Plan -->
+            <div class="pricing-plan">
+                <div class="plan-icon">👑</div>
+                <div class="plan-name">AI Powered</div>
+                <div class="plan-price">$500<span>/project</span></div>
+                <ul class="plan-features">
+                    <li>Unlimited Pages</li>
+                    <li>AI Integration</li>
+                    <li>Chatbot System</li>
+                    <li>E-Commerce Ready</li>
+                    <li>Premium SEO</li>
+                    <li>7 Days Delivery</li>
+                    <li>Unlimited Revisions</li>
+                    <li>Custom Admin Panel</li>
+                    <li>Payment Integration</li>
+                    <li>1 Month Support</li>
+                </ul>
+                <a href="https://wa.me/923039322849?text=I%20want%20AI%20Powered%20Website%20for%20$500" class="btn-order-web" target="_blank" style="display: block;">Get Started</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2>Client <span style="color: var(--cyan-glow);">Reviews</span></h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Amazing work! My e-commerce website looks professional and sales have increased by 200%. Highly recommended!"</p>
+                <p class="testimonial-author">— Ahmed R., ShopSmart Owner</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The AI portfolio website he built for me is stunning. Clients love the chatbot feature. True professional!"</p>
+                <p class="testimonial-author">— Sarah K., Freelance Designer</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Fast delivery, clean code, and excellent support. My restaurant website looks better than competitors!"</p>
+                <p class="testimonial-author">— Usman M., Restaurant Owner</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923039322849" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="three-background.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // === TAB FILTERING ===
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const websiteCards = document.querySelectorAll('.website-card');
+        
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                websiteCards.forEach((card, index) => {
+                    card.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                    card.style.transitionDelay = `${index * 0.08}s`;
+                    
+                    if (filter === 'all' || card.getAttribute('data-category').includes(filter)) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                        card.style.display = 'block';
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 500);
+                    }
+                });
+            });
+        });
+        
+        // === COUNTER ANIMATION ===
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const statsBar = document.querySelector('.stats-bar');
+        if (statsBar) {
+            statsObserver.observe(statsBar);
+        }
+        
+        // === SCROLL REVEAL ===
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.website-card, .pricing-plan, .testimonial-card, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            revealObserver.observe(el);
+        });
+        
+        // === AUTO SCROLL DUPLICATE ===
+        const scrollTrack = document.getElementById('scrollTrack');
+        if (scrollTrack) {
+            const clone = scrollTrack.innerHTML;
+            scrollTrack.innerHTML += clone;
+        }
+        
+        // === LIVE PREVIEW MODAL (Demo) ===
+        document.querySelectorAll('.btn-preview').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('🔍 Live Preview would open here!\n\nIn production, this links to the actual live website.');
+            });
+        });
+    </script>
+</body>
+</html>

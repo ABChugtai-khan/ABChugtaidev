@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="2.png">
+    <title>Contact | ABChugtai Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome 6 Free Icons -->
+<link rel="stylesheet" href="css/all.min.css">
+    <style>
+        /* === CONTACT PAGE SPECIFIC STYLES === */
+        
+        .contact-hero {
+            min-height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 5% 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(0, 255, 255, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(0, 102, 255, 0.04) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulseBg 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulseBg {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .contact-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #00ffff, #00ff88, #00ffff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: contactGradient 3s ease infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes contactGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .contact-hero .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* === MAIN CONTACT SECTION === */
+        .contact-main {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            padding: 2rem 5% 5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        /* === CONTACT INFO CARDS === */
+        .contact-info-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+        
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--cyan-glow);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .contact-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .contact-card:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.15);
+            transform: translateX(10px);
+        }
+        
+        .contact-card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover .contact-card-icon {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .contact-card h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .contact-card .highlight {
+            color: var(--cyan-glow);
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        /* WhatsApp Special Card */
+        .contact-card.whatsapp-card {
+            background: rgba(37, 211, 102, 0.05);
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+        
+        .contact-card.whatsapp-card:hover {
+            border-color: #25D366;
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.2);
+        }
+        
+        .contact-card.whatsapp-card::before {
+            background: #25D366;
+        }
+        
+        .contact-card.whatsapp-card .contact-card-icon {
+            background: rgba(37, 211, 102, 0.15);
+            border-color: rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-whatsapp {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #25D366;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #1ea952;
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        /* === CONTACT FORM === */
+        .contact-form-container {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .contact-form-container h2 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .contact-form-container h2 span {
+            color: var(--cyan-glow);
+        }
+        
+        .contact-form-container .form-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            background: rgba(0, 255, 255, 0.02);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300ffff' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        
+        .form-group select option {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        /* Floating label effect */
+        .form-group.floating input:focus ~ label,
+        .form-group.floating input:valid ~ label,
+        .form-group.floating textarea:focus ~ label,
+        .form-group.floating textarea:valid ~ label {
+            top: -8px;
+            left: 10px;
+            font-size: 0.75rem;
+            color: var(--cyan-glow);
+            background: var(--bg-primary);
+            padding: 0 8px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, var(--cyan-glow), var(--neon-blue));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+        
+        .btn-submit:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        /* === MAP SECTION === */
+        .map-section {
+            padding: 2rem 5% 5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .map-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .map-section h2 span {
+            color: var(--cyan-glow);
+        }
+        
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .map-container:hover {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            filter: invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2);
+        }
+        
+        /* === SOCIAL LINKS === */
+        .social-section {
+            text-align: center;
+            padding: 2rem 5% 5rem;
+        }
+        
+        .social-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 65px;
+            height: 65px;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--cyan-glow), var(--neon-blue));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-10px);
+            color: var(--cyan-glow);
+            border-color: var(--cyan-glow);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+        
+        .social-link:hover::before {
+            opacity: 1;
+        }
+        
+        /* === FAQ SECTION === */
+        .faq-section {
+            padding: 3rem 5% 5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .faq-section h2 span {
+            color: var(--cyan-glow);
+        }
+        
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--cyan-glow);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            user-select: none;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s;
+            color: var(--cyan-glow);
+            font-size: 1.2rem;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        /* === AVAILABILITY INDICATOR === */
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            width: fit-content;
+        }
+        
+        .pulse-dot {
+            width: 12px;
+            height: 12px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+        
+        .availability-text {
+            color: #00ff88;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* === SUCCESS MESSAGE === */
+        .success-message {
+            display: none;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #00ff88;
+            margin-bottom: 1.5rem;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .contact-main {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-card:hover {
+                transform: translateX(5px);
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Background -->
+    <div id="bg-canvas"></div>
+    
+    <!-- Navigation -->
+<nav class="navbar">
+    <div class="logo">ABChugtai</div>
+    
+    <!-- Mobile Menu Button - YEH ADD KARO -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="logo.html">Logos</a></li>
+        <li><a href="website.html">Websites</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+    
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div>
+            <h1>Let's Connect</h1>
+            <p class="subtitle">
+                Have a project in mind? I'd love to hear about it. 
+                Send me a message and let's create something amazing together.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Main Contact Section -->
+    <section class="contact-main">
+        <!-- Contact Info Column -->
+        <div class="contact-info-column">
+            
+            <!-- Availability -->
+            <div class="availability">
+                <div class="pulse-dot"></div>
+                <span class="availability-text">Available for New Projects</span>
+            </div>
+            
+            <!-- WhatsApp Card -->
+            <div class="contact-card whatsapp-card">
+                <div class="contact-card-icon">💬</div>
+                <h3>WhatsApp Chat</h3>
+                <p>Quick response guaranteed! Chat with me directly for fast communication.</p>
+                <p class="highlight" style="margin-top: 0.5rem;">+92 303 9322849</p>
+                <a href="https://wa.me/923039322849?text=Hello%20ABChugtai!%20I'm%20interested%20in%20your%20services." class="btn-whatsapp" target="_blank">
+                    💬 Start WhatsApp Chat
+                </a>
+            </div>
+            
+            <!-- Location Card -->
+            <div class="contact-card">
+                <div class="contact-card-icon">📍</div>
+                <h3>Location</h3>
+                <p>Based in Ahmedpur East, Pakistan. Serving clients worldwide with remote services.</p>
+                <p class="highlight" style="margin-top: 0.5rem;">Ahmedpur East, Punjab, Pakistan</p>
+            </div>
+            
+            <!-- Working Hours Card -->
+            <div class="contact-card">
+                <div class="contact-card-icon">🕐</div>
+                <h3>Working Hours</h3>
+                <p>Available 7 days a week for urgent projects.</p>
+                <p style="margin-top: 0.5rem;">
+                    <span style="color: var(--text-secondary);">Mon - Sat:</span> 
+                    <span class="highlight">9:00 AM - 11:00 PM</span><br>
+                    <span style="color: var(--text-secondary);">Sunday:</span> 
+                    <span class="highlight">12:00 PM - 8:00 PM</span>
+                </p>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Map Section -->
+    <section class="map-section">
+        <h2>Find Me <span>Here</span></h2>
+        <div class="map-container">
+            <!-- Replace with your exact Google Maps embed -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13920.123456789!2d71.256789!3d29.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDA3JzI0LjQiTiA3McKwMTUnMjQuNCJF!5e0!3m2!1sen!2s!4v1234567890"
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="ABChugtai Studio Location">
+            </iframe>
+        </div>
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-secondary);">
+            📍 Ahmedpur East, Punjab, Pakistan
+        </p>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently <span>Asked</span> Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How long does it take to complete a logo?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Basic logo designs are delivered within 24-48 hours. Premium packages with multiple concepts may take 2-3 days. Rush delivery is available for urgent projects.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What is the website development process?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                The process includes: 1) Discovery call to understand requirements, 2) Design mockup for approval, 3) Development with clean code, 4) Testing and revisions, 5) Launch and deployment. Typical timeline is 3-7 days depending on complexity.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Do you offer revisions?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Yes! All packages include revisions. Basic: 1-2 revisions, Business: 3 revisions, Premium/AI: Unlimited revisions until you're 100% satisfied.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What payment methods do you accept?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                I accept payments via Bank Transfer, Easypaisa, JazzCash, and International transfers through Wise/Payoneer. 50% advance to start the project.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Can you work with international clients?</span>
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Absolutely! I work with clients worldwide. All communication is done via WhatsApp, Email, or Zoom. Time zone differences are never an issue.
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Links -->
+    <section class="social-section">
+        <h2>Follow <span style="color: var(--cyan-glow);">Me</span></h2>
+        <div class="social-links">
+            <a href="https://wa.me/923039322849" class="social-link" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://web.facebook.com/profile.php?id=61589746006561" class="social-link" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.youtube.com/@ABChugtai" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://github.com/ABChugtai-khan" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+    </section>
+    
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923039322849" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        💬
+    </a>
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="three-background.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // === CONTACT FORM HANDLING ===
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const budget = document.getElementById('budget').value;
+            const message = document.getElementById('message').value;
+            
+            // Build WhatsApp message
+            const whatsappMessage = `*New Project Inquiry* 🔥%0A%0A` +
+                `👤 *Name:* ${name}%0A` +
+                `📧 *Email:* ${email}%0A` +
+                `📱 *Phone:* ${phone || 'Not provided'}%0A` +
+                `🎯 *Service:* ${service}%0A` +
+                `💰 *Budget:* ${budget || 'Not specified'}%0A` +
+                `📝 *Message:* ${message}%0A%0A` +
+                `_Sent from ABChugtai Studio Website_`;
+            
+            // Show success message
+            successMessage.classList.add('show');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Scroll to success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Open WhatsApp with the message
+            setTimeout(() => {
+                window.open(`https://wa.me/923039322849?text=${whatsappMessage}`, '_blank');
+            }, 1500);
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+        });
+        
+        // === FAQ ACCORDION ===
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+        
+        // === SCROLL REVEAL ANIMATION ===
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.contact-card, .faq-item, .social-link').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            revealObserver.observe(el);
+        });
+        
+        // Stagger delay for contact cards
+        document.querySelectorAll('.contact-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+        
+        // === FORM INPUT ANIMATION ===
+        document.querySelectorAll('.form-group input, .form-group textarea, .form-group select').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('label').style.color = 'var(--cyan-glow)';
+            });
+            
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('label').style.color = 'var(--text-secondary)';
+            });
+        });
+        
+        // === MAP INTERACTIVE GLOW ===
+        const mapContainer = document.querySelector('.map-container');
+        if (mapContainer) {
+            mapContainer.addEventListener('mousemove', (e) => {
+                const rect = mapContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                mapContainer.style.boxShadow = `
+                    ${(x - rect.width/2) / 20}px ${(y - rect.height/2) / 20}px 40px rgba(0, 255, 255, 0.15),
+                    0 0 30px rgba(0, 255, 255, 0.1)
+                `;
+            });
+            
+            mapContainer.addEventListener('mouseleave', () => {
+                mapContainer.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.1)';
+            });
+        }
+        
+        // === AUTO-SCROLL TO FORM IF HASH ===
+        if (window.location.hash === '#form') {
+            document.querySelector('.contact-form-container').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+</body>
+</html>
